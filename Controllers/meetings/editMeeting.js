@@ -44,4 +44,4 @@ const editMeeting = (req, res, next) => {
   }
 };
 
-module.exports = { deleteMeeting };
+module.exports = { editMeeting };

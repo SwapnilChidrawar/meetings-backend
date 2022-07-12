@@ -3,6 +3,7 @@ const express = require("express");
 const getMyMeetings = require('./../Controllers/meetings/getMyMeetings');
 const createMeetings = require('./../Controllers/meetings/createNewMeeting');
 const deleteMeeting = require('./../Controllers/meetings/DeleteMeeting');
+const editMeeting = require("./../Controllers/meetings/editMeeting");
 
 const router = express.Router();
 
@@ -16,7 +17,11 @@ router.post("/api/meetings/create", (req, res, next) => {
 
 router.delete("/api/meetings/delete", (req, res, next) => {
     deleteMeeting.deleteMeeting(req, res, next);
-})
+});
+
+router.put("/api/meetings/edit", (req, res, next) => {
+    editMeeting.editMeeting(req, res, next);
+});
 
 
 module.exports = router;
