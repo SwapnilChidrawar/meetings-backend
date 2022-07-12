@@ -11,7 +11,7 @@ const deleteMeeting = (req, res, next) => {
     parsedData = JSON.parse(data);
 
     let index = parsedData.findIndex(
-      (item) => item.meetingId === req.query.meetingId
+      (item) => item.organizer === req.query.organizer
     );
 
     if (index === -1) {
@@ -20,7 +20,11 @@ const deleteMeeting = (req, res, next) => {
       notFound.isAvailable = false;
       res.send(notFound);
     } else {
-      parsedData.splice(index, 1);
+      let meetingId = parsedData[index].findIndex(
+        (item) => item.meetingId === req.body.meetingId
+      );
+
+      parsedData[index].meetings.splice(meetingId, 1);
       const result = fileOperators.writeToFile(
         newPath + "MockData/meetings.json",
         JSON.stringify(parsedData)
