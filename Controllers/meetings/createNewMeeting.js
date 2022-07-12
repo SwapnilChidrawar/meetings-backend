@@ -14,8 +14,11 @@ const createMeeting = (req, res, next) => {
       (item) => item.organizer === req.body.organizer
     );
 
+    let obj = req.body.meetings[0];
+    obj.meetingId = obj.desc + Math.floor(Math.random()*(999-100+1)+100);
+
     if (index === -1) {
-      parsedData.push(req.body);
+      parsedData.push(req.body.meetings[0]);
       // parsedData = req.body;
     } else {
       parsedData[index].meetings.push(req.body.meetings[0]);
